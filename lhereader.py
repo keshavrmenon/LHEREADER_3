@@ -8,7 +8,7 @@ class Particle:
         self.py=py
         self.pz=pz
         self.energy=energy
-        self.mass=mass
+       # self.mass=mass
         self.spin=spin
         self.mother=mother  
 
