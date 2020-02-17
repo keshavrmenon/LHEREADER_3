@@ -75,22 +75,46 @@ hm_bb_nmssm=TH1F("m_bb_nmssm","NMSSM", 1000, 124.9, 125.1)
 #defining Hists for Higgs, Y, HY, and X
 
 #Radion
-hpt_H0=TH1F("pt_H_radion","Radion", 50, 0., 100.)
-heta_H0=TH1F("eta_H_radion","Radion", 50, -5., 5.)
-hphi_H0=TH1F("phi_H_radion","Radion", 50, -5., 5.)
+hpt_H0=TH1F("pt_h_radion","Radion", 50, 0., 100.)
+heta_H0=TH1F("eta_h_radion","Radion", 50, -5., 5.)
+hphi_H0=TH1F("phi_h_radion","Radion", 50, -5., 5.)
+hpt_HH0=TH1F("pt_hh_radion","Radion", 100, 0., 200.)
+heta_HH0=TH1F("eta_hh_radion","Radion", 50, -5., 5.)
+hphi_HH0=TH1F("phi_hh_radion","Radion", 50, -5., 5.)
+hm_HH0=TH1F("m_hh_radion", "Radion", 1000, 290, 310)
 
+#Graviton
+hpt_H2=TH1F("pt_h_graviton","Graviton", 50, 0., 100.)
+heta_H2=TH1F("eta_h_graviton", "Graviton", 50, -5., 5.)
+hphi_H2=TH1F("phi_h_graviton", "Graviton", 50, -5., 5.)
+hpt_HH2=TH1F("pt_hh_graviton","Graviton", 100, 0., 200.)
+heta_HH2=TH1F("eta_hh_graviton", "Graviton", 50, -5., 5.)
+hphi_HH2=TH1F("phi_hh_graviton", "Graviton", 50, -5., 5.)
+hm_HH2=TH1F("m_hh_graviton", "Graviton", 1000, 290, 310)
+
+#NMSSM
+hpt_H_nmssm=TH1F("pt_h_nmssm","NMSSM", 50, 0., 100.)
+heta_H_nmssm=TH1F("eta_h_nmssm", "NMSSM", 50, -5., 5.)
+hphi_H_nmssm=TH1F("phi_h_nmssm", "NMSSM", 50, -5., 5.)
+hpt_Y_nmssm=TH1F("pt_y_nmssm","NMSSM", 50, 0., 100.)
+heta_Y_nmssm=TH1F("eta_y_nmssm", "NMSSM", 50, -5., 5.)
+hphi_Y_nmssm=TH1F("phi_y_nmssm", "NMSSM", 50, -5., 5.)
+hpt_HY_nmssm=TH1F("pt_hy_nmssm","NMSSM", 100, 0., 200.)
+heta_HY_nmssm=TH1F("eta_hy_nmssm", "NMSSM", 50, -5., 5.)
+hphi_HY_nmssm=TH1F("phi_hy_nmssm", "NMSSM", 50, -5., 5.)
+hm_HY_nmssm=TH1F("m_hy_nmssm", "NMSSM", 1000, 290, 310)
 
 #iterating over events
 for e in events1:
     photons=e.getParticlesByIDs([22])
     bb=e.getParticlesByIDs([5,-5])
     hh=e.getParticlesByIDs([25])
-    p_phot=TLorentzVector(0, 0, 0, 0)         #defining Lorentz-Vector for diphoton
-    p_bb=TLorentzVector(0, 0, 0, 0)           #defining Lorentz-Vector for bb
-    p_hh=TLorentzVector(0, 0, 0, 0)
+    p_phot=TLorentzVector(0,0,0,0)         #defining Lorentz-Vector for diphoton
+    p_bb=TLorentzVector(0,0,0,0)           #defining Lorentz-Vector for bb
+    p_hh=TLorentzVector(0,0,0,0)
     for p in photons:
         if p.mother==[4,4]:
-            p_phot+=p.p4                      #Adding 4-vectors for photons in event
+            p_phot+=p.p4                   #Adding 4-vectors for photons in event
             hpt_photon0.Fill(p.pt)
             heta_photon0.Fill(p.eta)
             hphi_photon0.Fill(p.phi)
@@ -103,19 +127,27 @@ for e in events1:
         hpt_b0.Fill(j.pt)
         heta_b0.Fill(j.eta)
         hphi_b0.Fill(j.phi)
-    for h in hh:
-        p_hh+=h.p4
-        hpt_H0.Fill(h.pt)
     hpt_bb0.Fill(p_bb.Pt())
     heta_bb0.Fill(p_bb.Eta())
     hphi_bb0.Fill(p_bb.Phi())
     hm_bb0.Fill(p_bb.M())
-
+    for h in hh:
+        p_hh+=h.p4
+        hpt_H0.Fill(h.pt)
+        heta_H0.Fill(h.eta)
+        hphi_H0.Fill(h.phi)
+    hpt_hh0.Fill(p_hh.Pt())
+    heta_hh0.Fill(p_hh.Eta())
+    hphi_hh0.Fill(p_hh.Phi())
+    hm_hh0.Fill(p_hh.M())
+        
 for e in events2:
     photons=e.getParticlesByIDs([22])
     bb=e.getParticlesByIDs([5,-5])
+    hh=e.getParticlesByIDs([25])
     p_phot=TLorentzVector(0,0,0,0)
     p_bb=TLorentzVector(0,0,0,0)
+    p_hh=TLorentzVector(0,0,0,0)
     for p in photons:
         if p.mother==[4,4]:
             p_phot+=p.p4
@@ -136,12 +168,25 @@ for e in events2:
     heta_bb2.Fill(p_bb.Eta())
     hphi_bb2.Fill(p_bb.Phi())
     hm_bb2.Fill(p_bb.M())
+    for h in hh:
+        p_hh+=h.p4
+        hpt_H2.Fill(h.pt)
+        heta_H2.Fill(h.eta)
+        hphi_H2.Fill(h.phi)
+    hpt_hh2.Fill(p_hh.Pt())
+    heta_hh2.Fill(p_hh.Eta())
+    hphi_hh2.Fill(p_hh.Phi())
+    hm_hh2.Fill(p_hh.M())
 
 for e in events3:
     photons=e.getParticlesByIDs([22])
     bb=e.getParticlesByIDs([5,-5])
+    higgs=e.getParticlesByIDs([25])
+    y=e.getParticlesByIDs([35])
+    hy=higgs+y
     p_phot=TLorentzVector(0,0,0,0)
     p_bb=TLorentzVector(0,0,0,0)
+    p_hy=TLorentzVector(0,0,0,0)
     for p in photons:
       p_phot+=p.p4
       hpt_photon_nmssm.Fill(p.pt)
@@ -156,11 +201,22 @@ for e in events3:
         hpt_b_nmssm.Fill(j.pt)
         heta_b_nmssm.Fill(j.eta)
         hphi_b_nmssm.Fill(j.phi)
+    for i in hy:
+        p_hy+=hy.p4
     hpt_bb_nmssm.Fill(p_bb.Pt())
     heta_bb_nmssm.Fill(p_bb.Eta())
     hphi_bb_nmssm.Fill(p_bb.Phi())
     hm_bb_nmssm.Fill(p_bb.M())
-
+    hpt_h_nmssm.Fill(higgs.pt)
+    heta_h_nmssm.Fill(higgs.eta)
+    hphi_h_nmssm.Fill(higgs.phi)
+    hpt_y_nmssm.Fill(y.pt)
+    heta_y_nmssm.Fill(y.eta)
+    hphi_y_nmssm.Fill(y.phi)
+    hpt_hy_nmssm.Fill(p_hy.Pt())
+    heta_hy_nmssm.Fill(p_hy.Eta())
+    hphi_hy_nmssm.Fill(p_hy.Phi())    
+    
 #Draw Histograms
 c.Update()
 hpt_photon0.SetLineColor(600)
@@ -402,7 +458,108 @@ l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
 hm_bb_nmssm.SetTitle("m(bb) [GeV] at M_{X}=300GeV")
 c.SaveAs("bb_mass.root")
 
-hpt_H0.Draw("hist")
+c.Update()
+hpt_h0.SetLineColor(600)
+hpt_h0.SetLineWidth(1)
+hpt_h2.SetLineColor(418)
+hpt_h2.SetLineWidth(1)
+hpt_h_nmssm.SetLineColor(625)
+hpt_h_nmssm.SetLineWidth(1)
+hpt_h_nmssm.Scale(1/hpt_h_nmssm.GetEntries())
+hpt_h0.Scale(1/hpt_h0.GetEntries())
+hpt_h2.Scale(1/hpt_h2.GetEntries())
+hpt_h0.SetMaximum(1.2*hpt_h0.GetMaximum())
+hpt_h0.Draw("hist")
+hpt_h_nmssm.Draw("hist&sames")
+hpt_h2.Draw("hist&sames")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+hpt_h0.SetTitle("p_{T}(h) [GeV] at M_{X}=300GeV")
 c.SaveAs("h_pt.root")
+
+heta_h0.SetLineColor(600)
+heta_h0.SetLineWidth(1)
+heta_h2.SetLineColor(418)
+heta_h2.SetLineWidth(1)
+heta_h_nmssm.SetLineColor(625)
+heta_h_nmssm.SetLineWidth(1)
+heta_h_nmssm.Scale(1/heta_h_nmssm.GetEntries())
+heta_h0.Scale(1/heta_h0.GetEntries())
+heta_h2.Scale(1/heta_h2.GetEntries())
+heta_h_nmssm.SetMaximum(1.2*heta_h_nmssm.GetMaximum())
+heta_h_nmssm.Draw("hist")
+heta_h0.Draw("hist&sames")
+heta_h2.Draw("hist&sames")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+heta_h_nmssm.SetTitle("#eta(h) at M_{X}=300GeV")
+c.SaveAs("h_eta.root")
+
+hphi_h0.SetLineColor(600)
+hphi_h0.SetLineWidth(1)
+hphi_h2.SetLineColor(418)
+hphi_h2.SetLineWidth(1)
+hphi_h_nmssm.SetLineColor(625)
+hphi_h_nmssm.SetLineWidth(1)
+hphi_h_nmssm.Scale(1/hphi_h_nmssm.GetEntries())
+hphi_h0.Scale(1/hphi_h0.GetEntries())
+hphi_h2.Scale(1/hphi_h2.GetEntries())
+hphi_h_nmssm.SetMaximum(1.2*hphi_h_nmssm.GetMaximum())
+hphi_h_nmssm.Draw("hist")
+hphi_h2.Draw("hist&same")
+hphi_h0.Draw("hist&same")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+hphi_h_nmssm.SetTitle("#phi(h) at M_{X}=300GeV")
+c.SaveAs("h_phi.root")
+
+c.Update()
+hpt_hh0.SetLineColor(600)
+hpt_hh0.SetLineWidth(1)
+hpt_hh2.SetLineColor(418)
+hpt_hh2.SetLineWidth(1)
+hpt_hy_nmssm.SetLineColor(625)
+hpt_hy_nmssm.SetLineWidth(1)
+hpt_hy_nmssm.Scale(1/hpt_hy_nmssm.GetEntries())
+hpt_hh0.Scale(1/hpt_hh0.GetEntries())
+hpt_hh2.Scale(1/hpt_hh2.GetEntries())
+hpt_hh0.SetMaximum(1.2*hpt_hh0.GetMaximum())
+hpt_hh0.Draw("hist")
+hpt_hy_nmssm.Draw("hist&sames")
+hpt_hh2.Draw("hist&sames")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+hpt_hh0.SetTitle("p_{T}(h) [GeV] at M_{X}=300GeV")
+c.SaveAs("hy_pt.root")
+
+heta_hh0.SetLineColor(600)
+heta_hh0.SetLineWidth(1)
+heta_hh2.SetLineColor(418)
+heta_hh2.SetLineWidth(1)
+heta_hy_nmssm.SetLineColor(625)
+heta_hy_nmssm.SetLineWidth(1)
+heta_hy_nmssm.Scale(1/heta_hy_nmssm.GetEntries())
+heta_hh0.Scale(1/heta_hh0.GetEntries())
+heta_hh2.Scale(1/heta_hh2.GetEntries())
+heta_hy_nmssm.SetMaximum(1.2*heta_hy_nmssm.GetMaximum())
+heta_hy_nmssm.Draw("hist")
+heta_hh0.Draw("hist&sames")
+heta_hh2.Draw("hist&sames")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+heta_hy_nmssm.SetTitle("#eta(h) at M_{X}=300GeV")
+c.SaveAs("hy_eta.root")
+
+hphi_hh0.SetLineColor(600)
+hphi_hh0.SetLineWidth(1)
+hphi_hh2.SetLineColor(418)
+hphi_hh2.SetLineWidth(1)
+hphi_hy_nmssm.SetLineColor(625)
+hphi_hy_nmssm.SetLineWidth(1)
+hphi_hy_nmssm.Scale(1/hphi_hy_nmssm.GetEntries())
+hphi_hh0.Scale(1/hphi_hh0.GetEntries())
+hphi_hh2.Scale(1/hphi_hh2.GetEntries())
+hphi_hy_nmssm.SetMaximum(1.2*hphi_hy_nmssm.GetMaximum())
+hphi_hy_nmssm.Draw("hist")
+hphi_hh2.Draw("hist&same")
+hphi_hh0.Draw("hist&same")
+l=c.BuildLegend(0.75, 0.4, 0.9, 0.5)
+hphi_hy_nmssm.SetTitle("#phi(h) at M_{X}=300GeV")
+c.SaveAs("hy_phi.root")
 
 f.Write()
