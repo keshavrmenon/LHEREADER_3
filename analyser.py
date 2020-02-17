@@ -87,10 +87,10 @@ hm_hh0=TH1F("m_hh_radion", "Radion", 1000, 290, 310)
 hpt_h2=TH1F("pt_h_graviton","Graviton", 50, 0., 100.)
 heta_h2=TH1F("eta_h_graviton", "Graviton", 50, -5., 5.)
 hphi_h2=TH1F("phi_h_graviton", "Graviton", 50, -5., 5.)
-hpt_hH2=TH1F("pt_hh_graviton","Graviton", 100, 0., 200.)
-heta_hH2=TH1F("eta_hh_graviton", "Graviton", 50, -5., 5.)
-hphi_hH2=TH1F("phi_hh_graviton", "Graviton", 50, -5., 5.)
-hm_hH2=TH1F("m_hh_graviton", "Graviton", 1000, 290, 310)
+hpt_hh2=TH1F("pt_hh_graviton","Graviton", 100, 0., 200.)
+heta_hh2=TH1F("eta_hh_graviton", "Graviton", 50, -5., 5.)
+hphi_hh2=TH1F("phi_hh_graviton", "Graviton", 50, -5., 5.)
+hm_hh2=TH1F("m_hh_graviton", "Graviton", 1000, 290, 310)
 
 #NMSSM
 hpt_h_nmssm=TH1F("pt_h_nmssm","NMSSM", 50, 0., 100.)
@@ -133,9 +133,9 @@ for e in events1:
     hm_bb0.Fill(p_bb.M())
     for h in hh:
         p_hh+=h.p4
-        hpt_H0.Fill(h.pt)
-        heta_H0.Fill(h.eta)
-        hphi_H0.Fill(h.phi)
+        hpt_h0.Fill(h.pt)
+        heta_h0.Fill(h.eta)
+        hphi_h0.Fill(h.phi)
     hpt_hh0.Fill(p_hh.Pt())
     heta_hh0.Fill(p_hh.Eta())
     hphi_hh0.Fill(p_hh.Phi())
@@ -170,9 +170,9 @@ for e in events2:
     hm_bb2.Fill(p_bb.M())
     for h in hh:
         p_hh+=h.p4
-        hpt_H2.Fill(h.pt)
-        heta_H2.Fill(h.eta)
-        hphi_H2.Fill(h.phi)
+        hpt_h2.Fill(h.pt)
+        heta_h2.Fill(h.eta)
+        hphi_h2.Fill(h.phi)
     hpt_hh2.Fill(p_hh.Pt())
     heta_hh2.Fill(p_hh.Eta())
     hphi_hh2.Fill(p_hh.Phi())
@@ -202,17 +202,19 @@ for e in events3:
         heta_b_nmssm.Fill(j.eta)
         hphi_b_nmssm.Fill(j.phi)
     for i in hy:
-        p_hy+=hy.p4
+        p_hy+=i.p4
     hpt_bb_nmssm.Fill(p_bb.Pt())
     heta_bb_nmssm.Fill(p_bb.Eta())
     hphi_bb_nmssm.Fill(p_bb.Phi())
     hm_bb_nmssm.Fill(p_bb.M())
-    hpt_h_nmssm.Fill(higgs.pt)
-    heta_h_nmssm.Fill(higgs.eta)
-    hphi_h_nmssm.Fill(higgs.phi)
-    hpt_y_nmssm.Fill(y.pt)
-    heta_y_nmssm.Fill(y.eta)
-    hphi_y_nmssm.Fill(y.phi)
+    for h in higgs:
+        hpt_h_nmssm.Fill(h.pt)
+        heta_h_nmssm.Fill(h.eta)
+        hphi_h_nmssm.Fill(h.phi)
+    for i in y:
+        hpt_y_nmssm.Fill(i.pt)
+        heta_y_nmssm.Fill(i.eta)
+        hphi_y_nmssm.Fill(i.phi)
     hpt_hy_nmssm.Fill(p_hy.Pt())
     heta_hy_nmssm.Fill(p_hy.Eta())
     hphi_hy_nmssm.Fill(p_hy.Phi())    
