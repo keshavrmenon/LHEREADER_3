@@ -5,7 +5,7 @@
 #include<stdio.h>
 
 void plotter(){
-  char s[50]="pt_b";
+  char s[50]="eta_photon";
   char s1[50];
   strcpy(s1,s);
   TFile *f1 = new TFile("basic_kin_m300.root");
@@ -39,7 +39,7 @@ void plotter(){
   h2->Scale(1/(h2->GetEntries()));
   h3->Scale(1/(h3->GetEntries()));
   h4->Scale(1/(h4->GetEntries()));
-  h1->SetMaximum(1.2*h3->GetMaximum());
+  h1->SetMaximum(1.2*h4->GetMaximum());
   h1->Draw("hist");
   h2->Draw("hist&same");
   h3->Draw("hist&same");
