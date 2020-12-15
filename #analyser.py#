@@ -1,9 +1,13 @@
 from lhereader import readLHEF
 from ROOT import TFile, TCanvas, TH1F, TLegend, TLatex, TLorentzVector, TAxis
-#import CommonSetup1
+import CommonSetup1
 
 f=TFile('basic_kin_m300.root', 'RECREATE')
 c=TCanvas()
+c.SetLogy()
+c.cd()
+csetup=CommonSetup1.CommonSetup()
+csetup.style()
 
 #Getting event data from LHE File for mass point X=300 GeV
 data1=readLHEF('../LHE/spin0/m300.lhe')
@@ -20,37 +24,37 @@ events4=data4.events
 #SM
 hpt_photon_sm=TH1F("pt_photon_sm","SM", 25, 0., 250)
 heta_photon_sm=TH1F("eta_photon_sm","SM", 20, -5, 5)
-hphi_photon_sm=TH1F("phi_photon_sm","SM", 50, -5,5)
+hphi_photon_sm=TH1F("phi_photon_sm","SM", 20, -5,5)
 hpt_diphoton_sm=TH1F("pt_diphoton_sm","SM", 30, 0., 300.)
 heta_diphoton_sm=TH1F("eta_diphoton_sm","SM", 20, -5, 5)
-hphi_diphoton_sm=TH1F("phi_diphoton_sm","SM", 50, -5,5)
+hphi_diphoton_sm=TH1F("phi_diphoton_sm","SM", 20, -5,5)
 hm_diphoton_sm=TH1F("m_diphoton_sm","SM", 1000, 124.9, 125.1)
 
 #Radion Model
 hpt_photon0=TH1F("pt_photon_radion","Radion", 20, 0., 200)
-heta_photon0=TH1F("eta_photon_radion","Radion", 10, -5, 5)
-hphi_photon0=TH1F("phi_photon_radion","Radion", 10, -5,5)
+heta_photon0=TH1F("eta_photon_radion","Radion", 20, -5, 5)
+hphi_photon0=TH1F("phi_photon_radion","Radion", 20, -5,5)
 hpt_diphoton0=TH1F("pt_diphoton_radion","Radion", 15, 0., 150)
 heta_diphoton0=TH1F("eta_diphoton_radion","Radion", 20, -5, 5)
-hphi_diphoton0=TH1F("phi_diphoton_radion","Radion", 50, -5,5)
+hphi_diphoton0=TH1F("phi_diphoton_radion","Radion", 20, -5,5)
 hm_diphoton0=TH1F("m_diphoton_radion","Radion", 1000, 124.9, 125.1)
 
 #Graviton Model
 hpt_photon2=TH1F("pt_photon_graviton","Graviton", 20, 0., 200)
-heta_photon2=TH1F("eta_photon_graviton","Graviton", 10, -5., 5.)
-hphi_photon2=TH1F("phi_photon_graviton","Graviton", 50, -5,5)
+heta_photon2=TH1F("eta_photon_graviton","Graviton", 20, -5., 5.)
+hphi_photon2=TH1F("phi_photon_graviton","Graviton", 20, -5,5)
 hpt_diphoton2=TH1F("pt_diphoton_graviton","Graviton", 15, 0., 150)
-heta_diphoton2=TH1F("eta_diphoton_graviton","Graviton", 10, -5., 5.)
-hphi_diphoton2=TH1F("phi_diphoton_graviton","Graviton", 50, -5,5)
+heta_diphoton2=TH1F("eta_diphoton_graviton","Graviton", 20, -5., 5.)
+hphi_diphoton2=TH1F("phi_diphoton_graviton","Graviton", 20, -5,5)
 hm_diphoton2=TH1F("m_diphoton_graviton","Graviton", 1000, 124.9, 125.1)
 
 #NMSSM
 hpt_photon_nmssm=TH1F("pt_photon_nmssm","NMSSM", 20, 0., 200)
-heta_photon_nmssm=TH1F("eta_photon_nmssm","NMSSM", 50,-5., 5.)
-hphi_photon_nmssm=TH1F("phi_photon_nmssm","NMSSM", 50, -5,5)
+heta_photon_nmssm=TH1F("eta_photon_nmssm","NMSSM", 20,-5., 5.)
+hphi_photon_nmssm=TH1F("phi_photon_nmssm","NMSSM", 20, -5,5)
 hpt_diphoton_nmssm=TH1F("pt_diphoton_nmssm","NMSSM",15,0.,150.)
-heta_diphoton_nmssm=TH1F("eta_diphoton_nmssm","NMSSM", 10, -5., 5.)
-hphi_diphoton_nmssm=TH1F("phi_diphoton_nmssm","NMSSM", 50, -5.,5.)
+heta_diphoton_nmssm=TH1F("eta_diphoton_nmssm","NMSSM", 20, -5., 5.)
+hphi_diphoton_nmssm=TH1F("phi_diphoton_nmssm","NMSSM", 20, -5.,5.)
 hm_diphoton_nmssm=TH1F("m_diphoton_nmssm","NMSSM", 1000, 124.9, 125.1)
 
 
@@ -58,79 +62,79 @@ hm_diphoton_nmssm=TH1F("m_diphoton_nmssm","NMSSM", 1000, 124.9, 125.1)
 
 #SM
 hpt_b_sm=TH1F("pt_b_sm","SM", 25, 0., 250)
-heta_b_sm=TH1F("eta_b_sm","SM", 10, -5, 5)
-hphi_b_sm=TH1F("phi_b_sm","SM", 50, -5,5)
+heta_b_sm=TH1F("eta_b_sm","SM", 20, -5, 5)
+hphi_b_sm=TH1F("phi_b_sm","SM", 20, -5,5)
 hpt_bb_sm=TH1F("pt_bb_sm","SM", 30, 0., 300.)
-heta_bb_sm=TH1F("eta_bb_sm","SM", 10, -5, 5)
-hphi_bb_sm=TH1F("phi_bb_sm","SM", 50, -5,5)
+heta_bb_sm=TH1F("eta_bb_sm","SM", 20, -5, 5)
+hphi_bb_sm=TH1F("phi_bb_sm","SM", 20, -5,5)
 hm_bb_sm=TH1F("m_bb_sm","SM", 1000, 124.9, 125.1)
 
 #Radion
 hpt_b0=TH1F("pt_b_radion","Radion", 20, 0., 200)
-heta_b0=TH1F("eta_b_radion","Radion", 10, -5., 5.)
-hphi_b0=TH1F("phi_b_radion","Radion", 10, -5., 5.)
+heta_b0=TH1F("eta_b_radion","Radion", 20, -5., 5.)
+hphi_b0=TH1F("phi_b_radion","Radion", 20, -5., 5.)
 heta_bb0=TH1F("eta_bb_radion","Radion", 10, -5., 5.)
 hpt_bb0=TH1F("pt_bb_radion","Radion", 20, 0., 200)
-hphi_bb0=TH1F("phi_bb_radion","Radion", 10, -5., 5.)
+hphi_bb0=TH1F("phi_bb_radion","Radion", 20, -5., 5.)
 hm_bb0=TH1F("m_bb_radion","Radion", 1000, 124.9, 125.1)
 
 #Graviton
 hpt_b2=TH1F("pt_b_graviton","Graviton", 20, 0., 200)
-heta_b2=TH1F("eta_b_graviton","Graviton", 10, -5., 5.)
-hphi_b2=TH1F("phi_b_graviton","Graviton", 10, -5., 5.)
+heta_b2=TH1F("eta_b_graviton","Graviton", 20, -5., 5.)
+hphi_b2=TH1F("phi_b_graviton","Graviton", 20, -5., 5.)
 heta_bb2=TH1F("eta_bb_graviton","Graviton", 10, -5., 5.)
 hpt_bb2=TH1F("pt_bb_graviton","Graviton", 20, 0., 200)
-hphi_bb2=TH1F("phi_bb_graviton","Graviton", 10, -5., 5.)
+hphi_bb2=TH1F("phi_bb_graviton","Graviton", 20, -5., 5.)
 hm_bb2=TH1F("m_bb_graviton","Graviton", 1000, 124.9, 125.1)
 
 #NMSSM
 hpt_b_nmssm=TH1F("pt_b_nmssm","NMSSM", 20, 0., 200)
-heta_b_nmssm=TH1F("eta_b_nmssm","NMSSM", 10, -5., 5.)
-hphi_b_nmssm=TH1F("phi_b_nmssm","NMSSM", 10, -5., 5.)
+heta_b_nmssm=TH1F("eta_b_nmssm","NMSSM", 20, -5., 5.)
+hphi_b_nmssm=TH1F("phi_b_nmssm","NMSSM", 20, -5., 5.)
 heta_bb_nmssm=TH1F("eta_bb_nmssm","NMSSM", 10, -5., 5.)
 hpt_bb_nmssm=TH1F("pt_bb_nmssm","NMSSM", 20, 0., 200)
-hphi_bb_nmssm=TH1F("phi_bb_nmssm","NMSSM", 10, -5., 5.)
+hphi_bb_nmssm=TH1F("phi_bb_nmssm","NMSSM", 20, -5., 5.)
 hm_bb_nmssm=TH1F("m_bb_nmssm","NMSSM", 1000, 124.9, 125.1)
 
 #defining Hists for Higgs, Y, HY, and X
 
 #SM
 hpt_h_sm=TH1F("pt_h_sm","SM", 50, 0., 200)
-heta_h_sm=TH1F("eta_h_sm","SM", 50, -5, 5)
-hphi_h_sm=TH1F("phi_h_sm","SM", 50, -5,5)
+heta_h_sm=TH1F("eta_h_sm","SM", 20, -5, 5)
+hphi_h_sm=TH1F("phi_h_sm","SM", 20, -5,5)
 hpt_hh_sm=TH1F("pt_dih_sm","SM", 50, 0., 200)
-heta_hh_sm=TH1F("eta_hh_sm","SM", 50, -5, 5)
-hphi_hh_sm=TH1F("phi_hh_sm","SM", 50, -5,5)
+heta_hh_sm=TH1F("eta_hh_sm","SM", 20, -5, 5)
+hphi_hh_sm=TH1F("phi_hh_sm","SM", 20, -5,5)
 hm_hh_sm=TH1F("m_hh_sm","SM", 1000, 124.9, 125.1)
 
 #Radion
 hpt_h0=TH1F("pt_h_radion","Radion", 10, 0., 100)
-heta_h0=TH1F("eta_h_radion","Radion", 10, -5., 5.)
-hphi_h0=TH1F("phi_h_radion","Radion", 10, -5., 5.)
+heta_h0=TH1F("eta_h_radion","Radion", 20, -5., 5.)
+hphi_h0=TH1F("phi_h_radion","Radion", 20, -5., 5.)
 hpt_hh0=TH1F("pt_hh_radion","Radion", 50, 0., 200)
-heta_hh0=TH1F("eta_hh_radion","Radion", 10, -5., 5.)
-hphi_hh0=TH1F("phi_hh_radion","Radion", 10, -5., 5.)
+heta_hh0=TH1F("eta_hh_radion","Radion", 20, -5., 5.)
+hphi_hh0=TH1F("phi_hh_radion","Radion", 20, -5., 5.)
 hm_hh0=TH1F("m_hh_radion", "Radion", 1000, 290, 310)
 
 #Graviton
 hpt_h2=TH1F("pt_h_graviton","Graviton", 10, 0., 100)
-heta_h2=TH1F("eta_h_graviton", "Graviton", 10, -5., 5.)
-hphi_h2=TH1F("phi_h_graviton", "Graviton", 10, -5., 5.)
+heta_h2=TH1F("eta_h_graviton", "Graviton", 20, -5., 5.)
+hphi_h2=TH1F("phi_h_graviton", "Graviton", 20, -5., 5.)
 hpt_hh2=TH1F("pt_hh_graviton","Graviton", 50, 0., 200)
-heta_hh2=TH1F("eta_hh_graviton", "Graviton", 10, -5., 5.)
-hphi_hh2=TH1F("phi_hh_graviton", "Graviton", 10, -5., 5.)
+heta_hh2=TH1F("eta_hh_graviton", "Graviton", 20, -5., 5.)
+hphi_hh2=TH1F("phi_hh_graviton", "Graviton", 20, -5., 5.)
 hm_hh2=TH1F("m_hh_graviton", "Graviton", 1000, 290, 310)
 
 #NMSSM
 hpt_h_nmssm=TH1F("pt_h_nmssm","NMSSM", 10, 0., 100)
-heta_h_nmssm=TH1F("eta_h_nmssm", "NMSSM", 10, -5., 5.)
-hphi_h_nmssm=TH1F("phi_h_nmssm", "NMSSM", 10, -5., 5.)
+heta_h_nmssm=TH1F("eta_h_nmssm", "NMSSM", 20, -5., 5.)
+hphi_h_nmssm=TH1F("phi_h_nmssm", "NMSSM", 20, -5., 5.)
 hpt_y_nmssm=TH1F("pt_y_nmssm","NMSSM", 10, 0., 100)
-heta_y_nmssm=TH1F("eta_y_nmssm", "NMSSM", 10, -5., 5.)
-hphi_y_nmssm=TH1F("phi_y_nmssm", "NMSSM", 10, -5., 5.)
+heta_y_nmssm=TH1F("eta_y_nmssm", "NMSSM", 20, -5., 5.)
+hphi_y_nmssm=TH1F("phi_y_nmssm", "NMSSM", 20, -5., 5.)
 hpt_hy_nmssm=TH1F("pt_hy_nmssm","NMSSM", 20, 0., 200)
-heta_hy_nmssm=TH1F("eta_hy_nmssm", "NMSSM", 10, -5., 5.)
-hphi_hy_nmssm=TH1F("phi_hy_nmssm", "NMSSM", 10, -5., 5.)
+heta_hy_nmssm=TH1F("eta_hy_nmssm", "NMSSM", 20, -5., 5.)
+hphi_hy_nmssm=TH1F("phi_hy_nmssm", "NMSSM", 20, -5., 5.)
 hm_hy_nmssm=TH1F("m_hy_nmssm", "NMSSM", 1000, 290, 310)
 
 #iterating over events

@@ -5,7 +5,7 @@
 #include<stdio.h>
 
 void plotter(){
-  char s[50]="eta_photon";
+  char s[50]="phi_bb";
   char s1[50];
   strcpy(s1,s);
   TFile *f1 = new TFile("basic_kin_m300.root");

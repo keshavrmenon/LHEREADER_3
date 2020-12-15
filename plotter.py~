@@ -1,0 +1,8 @@
+from ROOT import TH1F, TFile, TLatex, TLegend, TCanvas
+import CommonSetup
+c=TCanvas()
+c.cd()
+csetup=CommonSetup.CommonSetup()
+csetup.style()
+
+f1

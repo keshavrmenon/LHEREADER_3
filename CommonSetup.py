@@ -28,7 +28,7 @@ class CommonSetup:
                 tdrStyle.SetStatColor(0)
                 tdrStyle.SetFillColor(0)
 
-                tdrStyle.SetPaperSize(20,20)
+                tdrStyle.SetPaperSize(20,26)
         #	tdrStyle.SetPadTopMargin(0.08)
         #	tdrStyle.SetPadBottomMargin(0.14)
                 tdrStyle.SetPadRightMargin(0.04)
@@ -46,9 +46,9 @@ class CommonSetup:
                 tdrStyle.SetTitleFont(42,"xyz")
                 tdrStyle.SetLabelSize(0.045,"xyz") #0.035
                 tdrStyle.SetTitleSize(0.045,"xyz")
-                tdrStyle.SetTitleOffset(1.0,"y")
+                tdrStyle.SetTitleOffset(1.6,"y")
 
-                tdrStyle.SetTitleX(0.40)
+                tdrStyle.SetTitleX(0.16)
                 tdrStyle.SetTitleY(0.93)
                 tdrStyle.SetTitleColor(1)
                 tdrStyle.SetTitleTextColor(1)
@@ -65,7 +65,7 @@ class CommonSetup:
                 tdrStyle.SetHistLineWidth(3)
                 tdrStyle.SetLineWidth(1)
 
-                tdrStyle.SetOptTitle(2)
+                tdrStyle.SetOptTitle(1)
                 tdrStyle.SetOptStat(0)
 
                 tdrStyle.cd()
@@ -262,7 +262,7 @@ class CommonSetup:
 
                 c.Cd(2)
                 ROOT.gPad.SetLogy(True)
-                ROOT.gPad.SetPad(0.0, 0.0, 1.0, 0.25)
+                ROOT.gPad.SetPad( 0.0, 0.0,  1.0, 0.25 )
                 ROOT.gPad.SetBottomMargin(0.375)
                 ROOT.gPad.SetLeftMargin(0.16) #0.13
                 ROOT.gPad.SetRightMargin(0.04) #0.05
@@ -281,17 +281,17 @@ class CommonSetup:
                 data.Draw("sameE1")
                 l.Draw()
                 keep.append(self.prelim(bintype))
-
+		
 
 		###
                 c.Cd(2)
 
                 hratio.GetYaxis().CenterTitle(1)
-                hratio.GetYaxis().SetTitleSize(0.165) #0.11
-                hratio.GetYaxis().SetTitleOffset(0.4) #0.55
-                hratio.GetYaxis().SetLabelSize(0.16)
-                hratio.GetYaxis().SetNdivisions(505)
-                
+                hratio.GetYaxis().SetTitleSize( 0.165 ) #0.11
+                hratio.GetYaxis().SetTitleOffset( 0.4 ) #0.55
+                hratio.GetYaxis().SetLabelSize( 0.16 )
+                hratio.GetYaxis().SetNdivisions( 505 )
+
                 hratio.GetXaxis().SetTitleSize( 0.16 )
                 hratio.GetXaxis().SetLabelSize( 0.16 )
                 hratio.GetXaxis().SetTitleOffset( 1 )
@@ -304,9 +304,9 @@ class CommonSetup:
 
                 ntitle = 'LOG_'+title
                 if norm == 'area':
-                    c.Print('PlotsArea/'+ntitle)
+                        c.Print('PlotsArea/'+ntitle)
                 else: 
-                    c.Print('PlotsLumi/'+ntitle)
+                        c.Print('PlotsLumi/'+ntitle)
 
 
         #################################
@@ -565,16 +565,16 @@ class CommonSetup:
                 datastack.Add(data[0])
 
                 f1 = 1.2
-                datastack.SetMaximum(max(datastack.GetMaximum(), mcstack.GetMaximum())*f1)
+                datastack.SetMaximum( max(datastack.GetMaximum(), mcstack.GetMaximum()) * f1)
 
                 datastack.SetTitle("")
 
                 datastack.Draw("E1")
                 mcstack.Draw("histsame")
                 datastack.Draw("sameE1")
-        	datastack.GetXaxis().SetTitle(xTit)
-            datastack.GetYaxis().SetTitle(yTit)
-        c.Modified()
+                datastack.GetXaxis().SetTitle(xTit)
+                datastack.GetYaxis().SetTitle(yTit)
+                c.Modified()
 
                 if left:
                         l = ROOT.TLegend(0.22, 0.63, 0.37, 0.88)
@@ -595,7 +595,7 @@ class CommonSetup:
                 l.Draw()
                 keep.append(self.prelim(bintype))
 
-        c.Update()
+                c.Update()
 
                 if norm == 'area':
                         c.Print('PlotsArea/'+title)
@@ -607,7 +607,7 @@ class CommonSetup:
                 ROOT.gPad.SetLogy(True)
 
                 f2 = 4.0
-        datastack.SetMaximum( max(datastack.GetMaximum(), mcstack.GetMaximum()) * f2)
+                datastack.SetMaximum( max(datastack.GetMaximum(), mcstack.GetMaximum()) * f2)
                 datastack.SetMinimum( 0.2 )
 
                 datastack.Draw("E1")
@@ -617,7 +617,7 @@ class CommonSetup:
                 l.Draw()
                 keep.append(self.prelim(bintype))
 
-        c.Update()
+                c.Update()
 
                 newtitle = 'log_'+title
                 if norm == 'area':
@@ -668,7 +668,7 @@ class CommonSetup:
                 data.SetYTitle(yTit)
 
                 data.Draw("E1")
-            #mc[0].Draw("histsame")
+        	#mc[0].Draw("histsame")
                 mc[1].Draw("histsame")
                 mc[2].Draw("histsame")
                 mc[3].Draw("histsame")

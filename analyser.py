@@ -1,16 +1,16 @@
 from lhereader import readLHEF
 from ROOT import TFile, TCanvas, TH1F, TLegend, TLatex, TLorentzVector, TAxis
-#import CommonSetup1
+import CommonSetup1
 
-f=TFile('basic_kin_m600.root', 'RECREATE')
+f=TFile('basic_kin_m900.root', 'RECREATE')
 c=TCanvas()
 
 #Getting event data from LHE File for mass point X=300 GeV
-data1=readLHEF('../LHE/spin0/m600.lhe')
+data1=readLHEF('../LHE/spin0/m300.lhe')
 events1=data1.events
-data2=readLHEF('../LHE/spin2/m600.lhe')
+data2=readLHEF('../LHE/spin2/m300.lhe')
 events2=data2.events
-data3=readLHEF('../LHE/NMSSM/m600.lhe')
+data3=readLHEF('../LHE/NMSSM/m300.lhe')
 events3=data3.events
 data4=readLHEF('../LHE/sm.lhe')
 events4=data4.events
